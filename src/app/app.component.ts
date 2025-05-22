@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {VacationCalenderComponent} from './vacation-calender/vacation-calender.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [VacationCalenderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
