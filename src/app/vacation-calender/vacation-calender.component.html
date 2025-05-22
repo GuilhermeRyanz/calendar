@@ -3,7 +3,7 @@
     <mat-card-title>Calendário de Férias</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <!-- Filtro de intervalo de datas -->
+
     <div class="filter-container">
       <mat-form-field appearance="fill">
         <mat-label>Data de Início</mat-label>
@@ -20,31 +20,30 @@
       </mat-form-field>
     </div>
 
-    <!-- Mensagem de erro -->
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
-
-    <!-- Tabela -->
     <table mat-table [dataSource]="users" class="mat-elevation-z8" *ngIf="days.length > 0">
-      <!-- Coluna do Nome do Usuário -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Usuário</th>
         <td mat-cell *matCellDef="let user">{{ user.name }}</td>
       </ng-container>
 
-      <!-- Colunas dos Dias -->
-      <ng-container *ngFor="let dayEntry of days" [matColumnDef]="dayEntry.columKey">
-        <th mat-header-cell *matHeaderCellDef>{{ dayEntry.day }}/{{ dayEntry.month }}</th>
-        <td mat-cell *matCellDef="let user" [ngClass]="{'vacation': isVacation(user, dayEntry)}"></td>
+      <ng-container *ngFor="let dayEntry of days" [matColumnDef]="dayEntry.columnKey">
+        <th mat-header-cell *matHeaderCellDef>{{ dayEntry.day }}/{{ getMonthAbbreviation(dayEntry.month) }}</th>
+        <td mat-cell *matCellDef="let user"
+            [ngClass]="{
+              'vacation': isVacation(user, dayEntry).isVacation,
+              'vacation-start': isVacation(user, dayEntry).isStart,
+              'vacation-end': isVacation(user, dayEntry).isEnd
+            }">
+        </td>
       </ng-container>
 
-      <!-- Definir as colunas exibidas -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <!-- Mensagem quando não há dados -->
     <div *ngIf="days.length === 0 && !errorMessage" class="no-data">
       Selecione um intervalo de datas válido para exibir a tabela.
     </div>

@@ -17,9 +17,20 @@ table {
 }
 
 .vacation {
-  background-color: #4caf50; /* Verde para dias de férias */
+  background-color: #4caf50;
 }
 
+.vacation-start {
+  background-color: #4caf50;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.vacation-end {
+  background-color: #4caf50;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 .mat-mdc-card {
   margin: 16px;
 }
